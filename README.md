@@ -1,2 +1,3 @@
-# livecam-ai
-Object recognition using webcam and GPT
+# Object Detection Using Webcam and AI
+
+This guide covers using a webcam and the OpenAI API for real-time object detection.
