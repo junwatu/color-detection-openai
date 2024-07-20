@@ -1,3 +1,3 @@
-# Color Detection Using Webcam and AI
+# Color Detection Using OpenAI
 
-This guide covers using a webcam and the OpenAI API for real-time object detection.
+This guide provides instructions on using a webcam and the OpenAI API to detect object colors.
