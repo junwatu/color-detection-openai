@@ -4,13 +4,13 @@
 
 ## Table of Contents
 
- 1. Prerequisites
- 2. Setting Up the Environment
- 3. Capturing Images with Node.js
- 4. Processing Images with OpenAI
- 5. Storing Data in GridDB
- 6. Integrating the Workflow
- 7. Conclusion
+ 1. [Prerequisites](#prerequisites)
+ 2. [Setting Up the Environment](#setting-up-the-environment)
+ 3. [Capturing Images with Node.js](#capturing-images-with-nodejs)
+ 4. [Processing Images with OpenAI](#processing-images-with-openai)
+ 5. [Storing Data in GridDB](#storing-data-in-griddb)
+ 6. [Integrating the Workflow](#integrating-the-workflow)
+ 7. [Further Enhancements](#further-enhancements)
 
 ## Introduction
 
@@ -28,4 +28,4 @@ In this tutorial, we will explore how to extract color palettes from images capt
 
 ## Integrating the Workflow
 
-## Conclusion
+## Further Enhancements
