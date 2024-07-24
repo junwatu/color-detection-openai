@@ -11,7 +11,7 @@
  5. [Capturing Images with Node.js](#capturing-images-with-nodejs)
  6. [Processing Images with OpenAI](#processing-images-with-openai)
  7. [Storing Data in GridDB](#storing-data-in-griddb)
- 8. [Integrating the Workflow](#integrating-the-workflow)
+ 8. [Integrating the Workflow](#building-color-palettes-ui)
  9. [Further Enhancements](#further-enhancements)
 
 ## Introduction
@@ -108,6 +108,6 @@ OPENAI_API_KEY=sk-proj-secret
 
 ## Storing Data in GridDB
 
-## Integrating the Workflow
+## Building Color Palettes UI
 
 ## Further Enhancements
