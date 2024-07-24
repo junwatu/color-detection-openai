@@ -94,7 +94,7 @@ If not running try to run the database with this command:
 sudo systemctl start gridstore
 ```
 
-### 3. Get the OpenAI Key
+### 3. Get The OpenAI Key
 
 To get the OpenAI key, you need to create a project first and then [create a key](https://platform.openai.com/api-keys). The important thing is you should save the OpenAI key on the `.env` file and make sure not to include it in version control by adding it to the `.gitignore`.
 
