@@ -60,8 +60,7 @@ npm run start:build
 
 ### 1. Installing Node.js
 
-This project will run on the Node.js platform. You need to install it from [here](https://nodejs.org/en/download). For this project, we will use the `nvm` package manager and Node.js v16.20.2
-LTS version.
+This project will run on the Node.js platform. You need to install it from [here](https://nodejs.org/en/download). For this project, we will use the `nvm` package manager and Node.js v16.20.2 LTS version.
 
 ```shell
 # installs nvm (Node Version Manager)
@@ -76,6 +75,7 @@ node -v # should print `v16.20.2`
 # verifies the right NPM version is in the environment
 npm -v # should print `8.19.4``
 ```
+
 To connect Node.js and GridDB database, you need the [gridb-node-api](https://github.com/nodejs/node-addon-api) npm package which is a Node.js binding developed using GridDB C Client and Node addon API.
 
 ### 2. Setting Up GridDB
