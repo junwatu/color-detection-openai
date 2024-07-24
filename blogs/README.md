@@ -76,7 +76,6 @@ node -v # should print `v16.20.2`
 # verifies the right NPM version is in the environment
 npm -v # should print `8.19.4``
 ```
-
 To connect Node.js and GridDB database, you need the [gridb-node-api](https://github.com/nodejs/node-addon-api) npm package which is a Node.js binding developed using GridDB C Client and Node addon API.
 
 ### 2. Setting Up GridDB
@@ -97,7 +96,7 @@ sudo systemctl start gridstore
 
 ### 3. Get the OpenAI Key
 
-To get the OpenAI key, you need to create a project first and [create a key](https://platform.openai.com/api-keys). The important thing is you should save the OpenAI key on the `.env` file and make sure not to include it in version control by adding it to the `.gitignore`.
+To get the OpenAI key, you need to create a project first and then [create a key](https://platform.openai.com/api-keys). The important thing is you should save the OpenAI key on the `.env` file and make sure not to include it in version control by adding it to the `.gitignore`.
 
 ## Capturing Images with Node.js
 
