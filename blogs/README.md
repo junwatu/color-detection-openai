@@ -56,7 +56,6 @@ You can change the `VITE_APP_URL` to your needs and then run the project by runn
 npm run start:build
 ```
 
-
 ## Setting Up the Environment
 
 ### 1. Installing Node.js
