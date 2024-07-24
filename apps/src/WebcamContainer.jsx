@@ -1,0 +1,110 @@
+// WebcamContainer.js
+import { useEffect, useRef, useState } from 'react';
+
+const WebcamContainer = () => {
+	const videoRef = useRef(null)
+	const canvasRef = useRef(null)
+	const [usingFrontCamera, setUsingFrontCamera] = useState(true)
+
+	useEffect(() => {
+		initializeWebcam()
+	}, [])
+
+	const initializeWebcam = () => {
+		navigator.mediaDevices.getUserMedia({ video: true })
+			.then(stream => {
+				videoRef.current.srcObject = stream
+			})
+			.catch(error => {
+				console.error('getUserMedia error:', error)
+			})
+	}
+
+	const captureImage = () => {
+		const context = canvasRef.current.getContext('2d')
+		context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+
+		const base64Image = canvasRef.current.toDataURL('image/jpeg').split(',')[1]
+		processImage(base64Image)
+	}
+
+	const processImage = (base64Image) => {
+		toggleLoader(true)
+
+		fetch('process_image', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ image: base64Image })
+		})
+			.then(response => response.json())
+			.then(handleResponse)
+			.catch(handleError)
+	}
+
+	const handleResponse = (data) => {
+		toggleLoader(false)
+		if (data.error) {
+			console.error(data.error)
+			appendToChatbox(`Error: ${data.error}`, true)
+			return
+		}
+		appendToChatbox(data.choices[0].message.content)
+	}
+
+	const handleError = (error) => {
+		toggleLoader(false)
+		console.error('Fetch error:', error)
+		appendToChatbox(`Error: ${error.message}`, true)
+	}
+
+	const toggleLoader = (show) => {
+		document.querySelector('.loader').style.display = show ? 'block' : 'none'
+	}
+
+	const appendToChatbox = (message, isUserMessage = false) => {
+		const chatbox = document.getElementById('chatbox')
+		const messageElement = document.createElement('div')
+		const timestamp = new Date().toLocaleTimeString()
+
+		messageElement.className = isUserMessage ? 'user-message' : 'assistant-message'
+		messageElement.innerHTML = `<div class="message-content">${message}</div><div class="timestamp">${timestamp}</div>`
+
+		if (chatbox.firstChild) {
+			chatbox.insertBefore(messageElement, chatbox.firstChild)
+		} else {
+			chatbox.appendChild(messageElement)
+		}
+	}
+
+	const switchCamera = () => {
+		setUsingFrontCamera(!usingFrontCamera)
+		const constraints = {
+			video: { facingMode: (usingFrontCamera ? 'user' : 'environment') }
+		}
+
+		if (videoRef.current.srcObject) {
+			videoRef.current.srcObject.getTracks().forEach(track => track.stop())
+		}
+
+		navigator.mediaDevices.getUserMedia(constraints)
+			.then(stream => {
+				videoRef.current.srcObject = stream
+			})
+			.catch(error => {
+				console.error('Error accessing media devices.', error)
+			})
+	}
+
+	return (
+		<div id="webcam-container">
+			<video id="webcam" ref={videoRef} autoPlay playsInline width="640" height="480"></video>
+			<canvas id="canvas" ref={canvasRef} width="640" height="480" style={{ display: 'none' }}></canvas>
+			<button id="capture" onClick={captureImage}>Capture</button>
+			<button id="switch-camera" onClick={switchCamera}>Switch Camera</button>
+		</div>
+	)
+}
+
+export default WebcamContainer
