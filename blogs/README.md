@@ -21,10 +21,10 @@ In this tutorial, we will explore how to extract color palettes from images capt
 
 Before we dive in, ensure you have the following installed on your machine:
 
-	•	Node.js
-	•	GridDB
-	•	OpenAI API access
-	•	A webcam
+- Node.js
+- GridDB
+- OpenAI API access
+- A webcam
 
 ## Setting Up the Environment
 
