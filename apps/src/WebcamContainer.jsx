@@ -6,6 +6,8 @@ const WebcamContainer = () => {
 	const canvasRef = useRef(null)
 	const [usingFrontCamera, setUsingFrontCamera] = useState(true)
 
+	const imageProcessingURL = `${import.meta.env.VITE_APP_URL}/process-image`
+
 	useEffect(() => {
 		initializeWebcam()
 	}, [])
@@ -31,7 +33,7 @@ const WebcamContainer = () => {
 	const processImage = (base64Image) => {
 		toggleLoader(true)
 
-		fetch('process_image', {
+		fetch(imageProcessingURL, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
