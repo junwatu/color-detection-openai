@@ -5,8 +5,8 @@
 ## Table of Contents
 
  1. [Introduction](#introduction)
- 2. [Running The Project](#running-the-project)
- 3. [Prerequisites](#prerequisites)
+ 2. [Prerequisites](#prerequisites)
+ 3. [Running The Project](#running-the-project)
  4. [Setting Up the Environment](#setting-up-the-environment)
  5. [Capturing Images with Node.js](#capturing-images-with-nodejs)
  6. [Processing Images with OpenAI](#processing-images-with-openai)
@@ -17,6 +17,15 @@
 ## Introduction
 
 In this tutorial, we will explore how to extract color palettes from images captured via a webcam using Node.js, GridDB, and OpenAI. By leveraging Node.js for server-side scripting, GridDB for efficient data storage, and OpenAI for advanced image processing, we will create a seamless pipeline to capture images, analyze them, and generate dynamic color palettes. This guide will walk you through setting up your environment, capturing images from your webcam, and using AI to extract and store color data effectively.
+
+## Prerequisites
+
+Before we dive in, ensure you have the following installed on your machine:
+
+- Node.js
+- GridDB
+- OpenAI API access
+- A webcam
 
 ## Running The Project
 
@@ -47,14 +56,6 @@ You can change the `VITE_APP_URL` to your needs and then run the project by runn
 npm run start:build
 ```
 
-## Prerequisites
-
-Before we dive in, ensure you have the following installed on your machine:
-
-- Node.js
-- GridDB
-- OpenAI API access
-- A webcam
 
 ## Setting Up the Environment
 
