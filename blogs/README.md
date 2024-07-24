@@ -20,7 +20,32 @@ In this tutorial, we will explore how to extract color palettes from images capt
 
 ## Running The Project
 
+Clone the source code from this [GitHub repository](https://github.com/junwatu/color-detection-openai).
 
+```shell
+git clone https://github.com/junwatu/color-detection-openai.git
+```
+
+You also need to install [Node.js](#1-installing-nodejs) and [GridDB](#2-setting-up-griddb) for this project to run. If the software requirements are installed, change the directory to the `apps` project directory and then install all the dependencies:
+
+```shell
+cd color-detection-openai
+cd apps
+npm install
+```
+
+Create a `.env` file and copy all environment variables from the `.env.example` file. You need an OpenAI key for this project, please look in [this section](#3-get-the-openai-key) on how to get the key.
+
+```ini
+OPENAI_API_KEY=sk-proj-secret
+VITE_APP_URL=http://localhost:3000
+```
+
+You can change the `VITE_APP_URL` to your needs and then run the project by running this command:
+
+```shell
+npm run start:build
+```
 
 ## Prerequisites
 
