@@ -13,7 +13,7 @@ if (!process.env.VITE_APP_URL) {
 // eslint-disable-next-line no-undef
 const apiURL = new URL(process.env.VITE_APP_URL)
 const HOSTNAME = apiURL.hostname || 'localhost'
-const PORT = apiURL.port || 4000
+const PORT = apiURL.port || 3000
 
 app.use(bodyParser.json({ limit: '10mb' }))
 app.use(express.static(path.join(__dirname, 'dist')))
