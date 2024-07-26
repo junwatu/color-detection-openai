@@ -11,9 +11,9 @@ const userPrompt = "Extract the seven most prominent colors from the provided im
  * @returns 
  * 
  * Usage example:
- * const apiKey = process.env.OPENAI_API_KEY;
- * const base64Image = 'your_base64_image_string_here';
- * getColorAnalysis(apiKey, base64Image).then(response => console.log(response));
+ * const apiKey = process.env.OPENAI_API_KEY
+ * const base64Image = 'your_base64_image_string_here'
+ * getColorAnalysis(apiKey, base64Image).then(response => console.log(response))
  * 
  */
 async function getColorAnalysis(apiKey, base64Image, model = "gpt-4o-2024-05-13") {
@@ -50,6 +50,4 @@ async function getColorAnalysis(apiKey, base64Image, model = "gpt-4o-2024-05-13"
 	return response;
 }
 
-
 export { getColorAnalysis }
-
