@@ -26,7 +26,7 @@ const WebcamContainer = () => {
 		const context = canvasRef.current.getContext('2d')
 		context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
 
-		const base64Image = canvasRef.current.toDataURL('image/jpeg').split(',')[1]
+		const base64Image = canvasRef.current.toDataURL('image/jpeg')
 		processImage(base64Image)
 	}
 
@@ -52,7 +52,7 @@ const WebcamContainer = () => {
 			appendToChatbox(`Error: ${data.error}`, true)
 			return
 		}
-		appendToChatbox(data.choices[0].message.content)
+		appendToChatbox(data?.message.content)
 	}
 
 	const handleError = (error) => {
