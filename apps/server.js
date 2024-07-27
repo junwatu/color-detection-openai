@@ -2,6 +2,7 @@ import path from 'path'
 import express from 'express'
 import bodyParser from 'body-parser'
 import { __dirname } from './dirname.js'
+import { getColorAnalysis } from './libs/ai.js'
 
 const app = express()
 
@@ -19,25 +20,19 @@ app.use(bodyParser.json({ limit: '10mb' }))
 app.use(express.static(path.join(__dirname, 'dist')))
 app.use(express.static(path.join(__dirname, "public")))
 
-app.post('/process-image', (req, res) => {
+app.post('/process-image', async (req, res) => {
 	const { image } = req.body
 
 	if (!image) {
 		return res.status(400).json({ error: 'No image provided' })
 	}
 
-	// For demonstration, we'll just simulate a response
-	const simulatedResponse = {
-		choices: [
-			{
-				message: {
-					content: 'Processed image successfully'
-				}
-			}
-		]
-	}
+	// OpenAI
+	// eslint-disable-next-line no-undef
+	const result = await getColorAnalysis(image)
+	console.log(result.choices[0])
 
-	res.json(simulatedResponse)
+	res.json(result.choices[0])
 })
 
 app.listen(PORT, HOSTNAME, () => {

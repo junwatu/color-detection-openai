@@ -1,5 +1,17 @@
 import OpenAI from "openai";
 
+
+// eslint-disable-next-line no-undef
+if (!process.env.OPENAI_API_KEY) {
+	throw new Error('OPENAI_API_KEY environment variable is not set')
+}
+
+const openai = new OpenAI({
+	// eslint-disable-next-line no-undef
+	apiKey: process.env.OPENAI_API_KEY
+});
+
+
 const systemPrompt = `You are an AI specialized in colorimetry, the science and technology of color detection and measurement. You possess deep knowledge of the principles of color science, including color spaces, color matching functions, and the use of devices such as spectrophotometers and colorimeters. You provide accurate and detailed analyses of color properties, offer solutions for color consistency issues, and assist in applications ranging from imaging and printing to manufacturing and display technologies. Use your expertise to answer questions, solve problems, and provide color detection and measurement guidance.`;
 
 const userPrompt = "Extract the seven most prominent colors from the provided image. Use color clustering techniques to identify and present these colors in Hex values. Answer with the raw array values ONLY. DO NOT FORMAT IT.";
@@ -16,11 +28,11 @@ const userPrompt = "Extract the seven most prominent colors from the provided im
  * getColorAnalysis(apiKey, base64Image).then(response => console.log(response))
  * 
  */
-async function getColorAnalysis(apiKey, base64Image, model = "gpt-4o-mini-2024-07-18") {
-	const openai = new OpenAI({ apiKey });
+async function getColorAnalysis(base64Image) {
 
+	console.log(base64Image)
 	const response = await openai.chat.completions.create({
-		model: model,
+		model: "gpt-4o-mini-2024-07-18",
 		messages: [
 			{
 				role: "system",
@@ -31,7 +43,9 @@ async function getColorAnalysis(apiKey, base64Image, model = "gpt-4o-mini-2024-0
 				content: [
 					{
 						type: "image_url",
-						image_url: base64Image
+						image_url: {
+							url: base64Image
+						}
 					},
 					{
 						type: "text",
