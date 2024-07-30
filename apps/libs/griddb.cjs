@@ -28,8 +28,7 @@ function initContainer() {
 		columnInfoList: [
 			['id', griddb.Type.INTEGER],
 			['picture', griddb.Type.STRING],
-			['colors', griddb.Type.STRING],
-			['svg', griddb.Type.STRING]
+			['colors', griddb.Type.STRING]
 		],
 		type: griddb.ContainerType.COLLECTION,
 		rowKey: true,

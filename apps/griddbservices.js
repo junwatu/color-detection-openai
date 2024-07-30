@@ -3,13 +3,12 @@ import { generateRandomID } from './libs/rangen.js';
 
 const { collectionDb, store, conInfo } = await GridDB.initGridDbTS()
 
-export async function saveData({ image, genColors, genSvg }) {
+export async function saveData({ image, genColors }) {
 	const id = generateRandomID()
 	const picture = String(image)
 	const colors = String(genColors)
-	const svg = String(genSvg)
 
-	const packetInfo = [parseInt(id), picture, colors, svg]
+	const packetInfo = [parseInt(id), picture, colors]
 	const saveStatus = await GridDB.insert(packetInfo, collectionDb)
 	return saveStatus
 }
