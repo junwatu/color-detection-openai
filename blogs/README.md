@@ -102,9 +102,9 @@ To get the OpenAI key, create a project first and then [create a key](https://pl
 OPENAI_API_KEY=sk-proj-secret
 ```
 
-Another important note is to select any models that can be accessed by the project.
+Another important note is to choose models accessible by the project. In this project, we will use `gpt-4o` models.
 
-
+![limit LLMs](images/limit-models.png)
 
 
 ## Capturing Images with Node.js
