@@ -96,11 +96,16 @@ sudo systemctl start gridstore
 
 ### 3. Get The OpenAI Key
 
-To get the OpenAI key, you need to create a project first and then [create a key](https://platform.openai.com/api-keys). The important thing is you should save the OpenAI key on the `.env` file and make sure not to include it in version control by adding it to the `.gitignore`.
+To get the OpenAI key, create a project first and then [create a key](https://platform.openai.com/api-keys). The important thing is you should save the OpenAI key on the `.env` file and ensure not to include it in version control by adding it to the `.gitignore`.
 
 ```ini
 OPENAI_API_KEY=sk-proj-secret
 ```
+
+Another important note is to select any models that can be accessed by the project.
+
+
+
 
 ## Capturing Images with Node.js
 
