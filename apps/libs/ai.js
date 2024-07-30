@@ -27,8 +27,6 @@ const userPrompt = "Extract the seven most prominent colors from the provided im
  * 
  */
 async function getColorAnalysis(base64Image) {
-
-	console.log(base64Image)
 	const response = await openai.chat.completions.create({
 		model: "gpt-4o-mini-2024-07-18",
 		messages: [
