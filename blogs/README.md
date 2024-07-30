@@ -101,12 +101,13 @@ To get the OpenAI key, create a project first and then [create a key](https://pl
 ```ini
 OPENAI_API_KEY=sk-proj-secret
 ```
-Another crucial factor is to select models that are accessible for the project. For this project, we will utilize 'gpt-4o' models for image recognition and extracting colors from the image.
+Another crucial factor is to select models that are accessible for the project. For this project, we will utilize `gpt-4o` models for image recognition and extracting colors from the image.
 
 ![limit LLMs](images/limit-models.png)
 
-
 ## Capturing Images with Node.js
+
+
 
 ## Processing Images with OpenAI
 
