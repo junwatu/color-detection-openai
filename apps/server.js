@@ -26,12 +26,8 @@ app.post('/process-image', async (req, res) => {
 	if (!image) {
 		return res.status(400).json({ error: 'No image provided' })
 	}
-
-	// OpenAI
 	// eslint-disable-next-line no-undef
 	const result = await getColorAnalysis(image)
-	console.log(result.choices[0])
-
 	res.json(result.choices[0])
 })
 
