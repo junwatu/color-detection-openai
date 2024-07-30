@@ -1,21 +1,33 @@
 import Chatbox from './Chatbox'
 import WebcamContainer from './WebcamContainer'
-import BoxContainer from './BoxContainer'
-import ColorRectangles from './ColorRectangle'
+import { useEffect, useState } from 'react'
 
 const App = () => {
-	const colors = ['#2A2C9B', '#F08A7D', '#8E5DB2', '#E8A1A3', '#4D3B9E', '#7F3C8F', '#B57AB3']
+    const [colors, setColors] = useState([])
+	
+	const handleColorsExtracted = (colors) => {
+		console.log('Extracted colors:', colors)
+		setColors(colors)
+	}
+
+	useEffect(() => {
+		const handleColorsExtractedEvent = (event) => {
+			handleColorsExtracted(event.detail)
+		}
+
+		window.addEventListener('colorsExtracted', handleColorsExtractedEvent)
+
+		// Clean up the event listener on unmount
+		return () => {
+			window.removeEventListener('colorsExtracted', handleColorsExtractedEvent)
+		}
+	}, [])
 
 	return (
-		<>
-			<div id="content-container">
-				<WebcamContainer />
-				<Chatbox />
-			</div>
-			<BoxContainer>
-				<ColorRectangles colors={colors} />
-			</BoxContainer>
-		</>
+		<div id="content-container">
+			<WebcamContainer onColorsExtracted={handleColorsExtracted}/>
+			<Chatbox colors={colors}/>	
+		</div>
 	)
 }
 

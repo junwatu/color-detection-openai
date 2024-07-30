@@ -1,7 +1,21 @@
 // WebcamContainer.js
 import { useEffect, useRef, useState } from 'react';
 
-const WebcamContainer = () => {
+const parseColors = (colors) => {
+	// Check if the input is already an array
+	if (Array.isArray(colors)) {
+		return colors
+	}
+	// If it's a string, split it by commas and trim any extra whitespace
+	if (typeof colors === 'string') {
+		return colors.split(',').map(color => color.trim())
+	}
+	// If it's neither, return an empty array or handle it as needed
+	return []
+}
+
+// eslint-disable-next-line react/prop-types
+const WebcamContainer = ({ onColorsExtracted }) => {
 	const videoRef = useRef(null)
 	const canvasRef = useRef(null)
 	const [usingFrontCamera, setUsingFrontCamera] = useState(true)
@@ -46,13 +60,24 @@ const WebcamContainer = () => {
 	}
 
 	const handleResponse = (data) => {
+		let colorsData = data?.message.content
 		toggleLoader(false)
 		if (data.error) {
 			console.error(data.error)
 			appendToChatbox(`Error: ${data.error}`, true)
 			return
 		}
-		appendToChatbox(data?.message.content)
+		appendToChatbox(colorsData)
+		
+		
+		if (Array.isArray(parseColors(colorsData)) && parseColors(colorsData).every(color => typeof color === 'string')) {
+			// Dispatch a custom event with the colors
+			const event = new CustomEvent('colorsExtracted', { detail: parseColors(colorsData) })
+			window.dispatchEvent(event)
+			if (typeof onColorsExtracted === 'function') {
+				onColorsExtracted(parseColors(colorsData))
+			}
+		}
 	}
 
 	const handleError = (error) => {
