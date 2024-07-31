@@ -101,12 +101,38 @@ To get the OpenAI key, create a project first and then [create a key](https://pl
 ```ini
 OPENAI_API_KEY=sk-proj-secret
 ```
+
 Another crucial factor is to select models that are accessible for the project. For this project, we will utilize `gpt-4o` models for image recognition and extracting colors from the image.
 
 ![limit LLMs](images/limit-models.png)
 
 ## Capturing Images with Node.js
 
+To capture image, we can use [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API). It is an API related to WebRTC which provides support for streaming audio and video data. Before capturing an image from the web camera, first we need to initialize the web camera:
+
+```js
+const initializeWebcam = () => {
+  navigator.mediaDevices.getUserMedia({ video: true })
+   .then(stream => {
+    videoRef.current.srcObject = stream
+   })
+   .catch(error => {
+    console.error('getUserMedia error:', error)
+   })
+ }
+```
+
+And then to capture the image fromt the video on the specific frame, we can use the `drawImage()` function:
+
+```js
+const captureImage = () => {
+  const context = canvasRef.current.getContext('2d')
+  context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+
+  const base64Image = canvasRef.current.toDataURL('image/jpeg')
+  processImage(base64Image)
+}
+```
 
 
 ## Processing Images with OpenAI
