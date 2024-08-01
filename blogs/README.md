@@ -213,6 +213,14 @@ Where each item in the array is a color in the hex format.
 
 ## Storing Data in GridDB
 
+We use the GridDB database to store the data and these are the main data fields:
+
+| Column Name | Type           | Description                                            |
+|-------------|----------------|--------------------------------------------------------|
+| id          | INTEGER        | Unique identifier for each row.                        |
+| picture     | STRING         | URL or path to picture files.                          |
+| colors      | STRING         | List of colors in Hex format.                         |
+
 ## Building Color Palettes UI
 
 ## Further Enhancements
