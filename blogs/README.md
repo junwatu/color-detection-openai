@@ -108,7 +108,7 @@ Another crucial factor is to select models that are accessible for the project. 
 
 ## Capturing Images with Node.js
 
-To capture image, we can use [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API). It is an API related to WebRTC which provides support for streaming audio and video data. Before capturing an image from the web camera, first we need to initialize the web camera:
+To capture images, we can use [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API). It is an API related to WebRTC which provides support for streaming audio and video data. Before capturing an image from the web camera, first we need to initialize the web camera:
 
 ```js
 const initializeWebcam = () => {
@@ -134,7 +134,7 @@ const captureImage = () => {
 }
 ```
 
-The `drawImage()` function will captures the current frame from the video stream and renders it onto the canvas. This allows for further manipulation, processing, or conversion of the image data. In the provided code, the drawn image on the canvas is converted to a base64-encoded string using `toDataURL()` function, which is then sent to a server for processing.
+The `drawImage()` function will capture the current frame from the video stream and render it onto the canvas. This allows for further image data manipulation, processing, or conversion. In the provided code, the drawn image on the canvas is converted to a base64-encoded string using the `toDataURL()` function, which is then sent to a server for processing.
 
 ## Processing Images with OpenAI
 
@@ -153,7 +153,7 @@ app.post('/process-image', async (req, res) => {
 })
 ```
 
-And then to get the color analysis from the image, we will use `gpt-4o-mini`  model from OpenAI. The `getColorAnalysis()` function will take the base64-encoded image and then processed it.
+Then to get the color analysis from the image, we will use the `gpt-4o-mini`  model from OpenAI. The `getColorAnalysis()` function will take the base64-encoded image and then process it.
 
 ```js
 async function getColorAnalysis(base64Image) {
@@ -191,19 +191,19 @@ async function getColorAnalysis(base64Image) {
 }
 ```
 
-OpenAI model response depends on the command or order or prompt we give to it. To get a color analysis, we use this prompt:
+OpenAI's model response is determined by the prompt given. For a color analysis, use the specific prompt:
 
 ```js
 const userPrompt = "Extract the seven most prominent colors from the provided image. Use color clustering techniques to identify and present these colors in Hex values. Answer with the raw array values ONLY. DO NOT FORMAT IT.";
 ```
 
-We can get a better result by adding a system prompt to OpenAI model. This system prompt behave like a command for OpenAI model to behave for a specific persona, in this case is **a professional color analyst**.
+We can get a better result by adding a system prompt to the OpenAI model. This system prompt behaves like a command for the OpenAI model to behave for a specific persona, which is **a professional color analyst**.
 
 ```js
 const systemPrompt = `You are an AI specialized in colorimetry, the science and technology of color detection and measurement. You possess deep knowledge of the principles of color science, including color spaces, color matching functions, and the use of devices such as spectrophotometers and colorimeters. You provide accurate and detailed analyses of color properties, offer solutions for color consistency issues, and assist in applications ranging from imaging and printing to manufacturing and display technologies. Use your expertise to answer questions, solve problems, and provide color detection and measurement guidance.`;
 ```
 
-Prompt can also specify the model format response. In this project, we want to get the array of colors from the image oclors analysis. The OpenAI model response should be in the form:
+The prompt can also specify the model format response. In this project, we want the array of colors from the image colors analysis. The OpenAI model response should be in the form:
 
 ```js
 ['#2A2C9B', '#F08A7D', '#8E5DB2', '#E8A1A3', '#4D3B9E', '#7F3C8F', '#B57AB3']
