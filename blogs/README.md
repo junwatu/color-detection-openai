@@ -213,7 +213,7 @@ Where each item in the array is a color in the hex format.
 
 ## Storing Data in GridDB
 
-We use the GridDB database to store the data. These are the main data fields with it's description:
+We utilize the GridDB database for data storage. Here are the main data fields along with their descriptions:
 
 | Column Name | Type           | Description                                           |
 |-------------|----------------|--------------------------------------------------------|
