@@ -209,7 +209,7 @@ Prompt can also specify the model format response. In this project, we want to g
 ['#2A2C9B', '#F08A7D', '#8E5DB2', '#E8A1A3', '#4D3B9E', '#7F3C8F', '#B57AB3']
 ```
 
-Where each item is a color in the hex format.
+Where each item in the array is a color in the hex format.
 
 ## Storing Data in GridDB
 
