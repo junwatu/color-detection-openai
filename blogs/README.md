@@ -112,25 +112,27 @@ To capture images, we can use [MediaStream API](https://developer.mozilla.org/en
 
 ```js
 const initializeWebcam = () => {
-  navigator.mediaDevices.getUserMedia({ video: true })
-   .then(stream => {
-    videoRef.current.srcObject = stream
-   })
-   .catch(error => {
-    console.error('getUserMedia error:', error)
-   })
- }
+    navigator.mediaDevices.getUserMedia({
+            video: true
+        })
+        .then(stream => {
+            videoRef.current.srcObject = stream
+        })
+        .catch(error => {
+            console.error('getUserMedia error:', error)
+        })
+}
 ```
 
 And then to capture the image from the video, we can use the `drawImage()` function:
 
 ```js
 const captureImage = () => {
-  const context = canvasRef.current.getContext('2d')
-  context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+    const context = canvasRef.current.getContext('2d')
+    context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
 
-  const base64Image = canvasRef.current.toDataURL('image/jpeg')
-  processImage(base64Image)
+    const base64Image = canvasRef.current.toDataURL('image/jpeg')
+    processImage(base64Image)
 }
 ```
 
@@ -142,14 +144,18 @@ The image processing on the server is quite simple. The web app will send a base
 
 ```js
 app.post('/process-image', async (req, res) => {
- const { image } = req.body
+    const {
+        image
+    } = req.body
 
- if (!image) {
-  return res.status(400).json({ error: 'No image provided' })
- }
- // eslint-disable-next-line no-undef
- const result = await getColorAnalysis(image)
- res.json(result.choices[0])
+    if (!image) {
+        return res.status(400).json({
+            error: 'No image provided'
+        })
+    }
+    // eslint-disable-next-line no-undef
+    const result = await getColorAnalysis(image)
+    res.json(result.choices[0])
 })
 ```
 
@@ -157,37 +163,35 @@ Then to get the color analysis from the image, we will use the `gpt-4o-mini`  mo
 
 ```js
 async function getColorAnalysis(base64Image) {
- const response = await openai.chat.completions.create({
-  model: "gpt-4o-mini-2024-07-18",
-  messages: [
-   {
-    role: "system",
-    content: systemPrompt
-   },
-   {
-    role: "user",
-    content: [
-     {
-      type: "image_url",
-      image_url: {
-       url: base64Image
-      }
-     },
-     {
-      type: "text",
-      text: userPrompt
-     }
-    ]
-   }
-  ],
-  temperature: 0.51,
-  max_tokens: 3000,
-  top_p: 1,
-  frequency_penalty: 0,
-  presence_penalty: 0,
- });
+    const response = await openai.chat.completions.create({
+        model: "gpt-4o-mini-2024-07-18",
+        messages: [{
+                role: "system",
+                content: systemPrompt
+            },
+            {
+                role: "user",
+                content: [{
+                        type: "image_url",
+                        image_url: {
+                            url: base64Image
+                        }
+                    },
+                    {
+                        type: "text",
+                        text: userPrompt
+                    }
+                ]
+            }
+        ],
+        temperature: 0.51,
+        max_tokens: 3000,
+        top_p: 1,
+        frequency_penalty: 0,
+        presence_penalty: 0,
+    });
 
- return response;
+    return response;
 }
 ```
 
@@ -224,14 +228,17 @@ We utilize the GridDB database for data storage. Here are the main data fields a
 The `saveData()` is a wrapper for the `insert()` function in the `libs\griddb.cjs` that responsible to save the data into the database.
 
 ```js
-export async function saveData({ image, genColors }) {
- const id = generateRandomID()
- const picture = String(image)
- const colors = String(genColors)
+export async function saveData({
+    image,
+    genColors
+}) {
+    const id = generateRandomID()
+    const picture = String(image)
+    const colors = String(genColors)
 
- const packetInfo = [parseInt(id), picture, colors]
- const saveStatus = await GridDB.insert(packetInfo, collectionDb)
- return saveStatus
+    const packetInfo = [parseInt(id), picture, colors]
+    const saveStatus = await GridDB.insert(packetInfo, collectionDb)
+    return saveStatus
 }
 ```
 
