@@ -122,7 +122,7 @@ const initializeWebcam = () => {
  }
 ```
 
-And then to capture the image fromt the video on the specific frame, we can use the `drawImage()` function:
+And then to capture the image from the video, we can use the `drawImage()` function:
 
 ```js
 const captureImage = () => {
@@ -134,8 +134,82 @@ const captureImage = () => {
 }
 ```
 
+The `drawImage()` function will captures the current frame from the video stream and renders it onto the canvas. This allows for further manipulation, processing, or conversion of the image data. In the provided code, the drawn image on the canvas is converted to a base64-encoded string using `toDataURL()` function, which is then sent to a server for processing.
 
 ## Processing Images with OpenAI
+
+The image processing on the server is quite simple. The web app will send a base64-encoded image to the `/process-image` route.
+
+```js
+app.post('/process-image', async (req, res) => {
+ const { image } = req.body
+
+ if (!image) {
+  return res.status(400).json({ error: 'No image provided' })
+ }
+ // eslint-disable-next-line no-undef
+ const result = await getColorAnalysis(image)
+ res.json(result.choices[0])
+})
+```
+
+And then to get the color analysis from the image, we will use `gpt-4o-mini`  model from OpenAI. The `getColorAnalysis()` function will take the base64-encoded image and then processed it.
+
+```js
+async function getColorAnalysis(base64Image) {
+ const response = await openai.chat.completions.create({
+  model: "gpt-4o-mini-2024-07-18",
+  messages: [
+   {
+    role: "system",
+    content: systemPrompt
+   },
+   {
+    role: "user",
+    content: [
+     {
+      type: "image_url",
+      image_url: {
+       url: base64Image
+      }
+     },
+     {
+      type: "text",
+      text: userPrompt
+     }
+    ]
+   }
+  ],
+  temperature: 0.51,
+  max_tokens: 3000,
+  top_p: 1,
+  frequency_penalty: 0,
+  presence_penalty: 0,
+ });
+
+ return response;
+}
+```
+
+OpenAI model response depends on the command or order or prompt we give to it. To get a color analysis, we use this prompt:
+
+```js
+const userPrompt = "Extract the seven most prominent colors from the provided image. Use color clustering techniques to identify and present these colors in Hex values. Answer with the raw array values ONLY. DO NOT FORMAT IT.";
+```
+
+We can get a better result by adding a system prompt to OpenAI model. This system prompt behave like a command for OpenAI model to behave for a specific persona, in this case is **a professional color analyst**.
+
+```js
+const systemPrompt = `You are an AI specialized in colorimetry, the science and technology of color detection and measurement. You possess deep knowledge of the principles of color science, including color spaces, color matching functions, and the use of devices such as spectrophotometers and colorimeters. You provide accurate and detailed analyses of color properties, offer solutions for color consistency issues, and assist in applications ranging from imaging and printing to manufacturing and display technologies. Use your expertise to answer questions, solve problems, and provide color detection and measurement guidance.`;
+```
+
+Prompt can also specify the model format response. In this project, we want to get the array of colors from the image oclors analysis. The OpenAI model response should be in the form:
+
+```js
+['#2A2C9B', '#F08A7D', '#8E5DB2', '#E8A1A3', '#4D3B9E', '#7F3C8F', '#B57AB3']
+```
+
+Where each item is a color in the hex format.
 
 ## Storing Data in GridDB
 
