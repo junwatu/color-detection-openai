@@ -213,13 +213,27 @@ Where each item in the array is a color in the hex format.
 
 ## Storing Data in GridDB
 
-We use the GridDB database to store the data and these are the main data fields:
+We use the GridDB database to store the data. These are the main data fields with it's description:
 
-| Column Name | Type           | Description                                            |
+| Column Name | Type           | Description                                           |
 |-------------|----------------|--------------------------------------------------------|
-| id          | INTEGER        | Unique identifier for each row.                        |
-| picture     | STRING         | URL or path to picture files.                          |
+| id          | INTEGER        | Unique identifier for each row.                       |
+| picture     | STRING         | URL or path to picture files.                         |
 | colors      | STRING         | List of colors in Hex format.                         |
+
+The `saveData()` is the wrapper for the `insert()` function in the `libs\griddb.cjs` that responsible to save the data into the database.
+
+```js
+export async function saveData({ image, genColors }) {
+ const id = generateRandomID()
+ const picture = String(image)
+ const colors = String(genColors)
+
+ const packetInfo = [parseInt(id), picture, colors]
+ const saveStatus = await GridDB.insert(packetInfo, collectionDb)
+ return saveStatus
+}
+```
 
 ## Building Color Palettes UI
 
