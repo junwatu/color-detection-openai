@@ -2,15 +2,14 @@
 import { useEffect, useRef, useState } from 'react';
 
 const parseColors = (colors) => {
-	// Check if the input is already an array
 	if (Array.isArray(colors)) {
 		return colors
 	}
-	// If it's a string, split it by commas and trim any extra whitespace
+	
 	if (typeof colors === 'string') {
 		return colors.split(',').map(color => color.trim())
 	}
-	// If it's neither, return an empty array or handle it as needed
+	
 	return []
 }
 
