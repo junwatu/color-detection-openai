@@ -228,10 +228,7 @@ We utilize the GridDB database for data storage. Here are the main data fields a
 The `saveData()` is a wrapper for the `insert()` function in the `libs\griddb.cjs` that responsible to save the data into the database.
 
 ```js
-export async function saveData({
-    image,
-    genColors
-}) {
+export async function saveData({ image, genColors }) {
     const id = generateRandomID()
     const picture = String(image)
     const colors = String(genColors)
