@@ -251,13 +251,13 @@ The UI consists of two main user interfaces: **image capture** and **color palet
 // WebcamContainer.js
 const WebcamContainer = ({ onColorsExtracted }) => {
 
-  const captureImage = () => {
-		    const context = canvasRef.current.getContext('2d')
-		    context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+   const captureImage = () => {
+      const context = canvasRef.current.getContext('2d')
+      context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
 
-		    const base64Image = canvasRef.current.toDataURL('image/jpeg')
-		    processImage(base64Image)
-	   }
+      const base64Image = canvasRef.current.toDataURL('image/jpeg')
+      processImage(base64Image)
+    }
     // code processing here
 
     return (
