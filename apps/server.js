@@ -18,7 +18,7 @@ const PORT = apiURL.port || 3000
 
 app.use(bodyParser.json({ limit: '10mb' }))
 app.use(express.static(path.join(__dirname, 'dist')))
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.post('/process-image', async (req, res) => {
 	const { image } = req.body
