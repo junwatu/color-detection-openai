@@ -330,4 +330,6 @@ const ColorRectangles = ({ colors }) => {
 export default ColorRectangles
 ```
 
+![color patette ui](images/color-palette-ui.png)
+
 ## Further Enhancements
