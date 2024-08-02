@@ -245,13 +245,11 @@ export async function saveData({ image, genColors }) {
 
 ![app screenshot](images/app-screenshot.png)
 
-The UI consists of two main user interfaces: **image capture** and **color palettes**. In this project, we use React.js for better component management.
+The UI consists of two primary user interfaces: **image capture** and **color palettes**. React.js is utilized in this project for improved component management.
 
 ### Image Capture
 
-The image capture user interface is simply a HTML5 video view. The full source code for the image capture user interface is in the `WebcamContainer.jsx` file.
-
-This is the snippet code that show the main HTML tags used:
+The image capture user interface is simply an HTML5 video view. This is the snippet code that shows the main HTML tags used:
 
 ```jsx
 // WebcamContainer.js
@@ -278,7 +276,7 @@ const WebcamContainer = ({ onColorsExtracted }) => {
 export default WebcamContainer
 ```
 
-When you click the **Capture** button the `captureImage()` function will capture the image on specific video frame and send it for further processing.
+When you click the **Capture** button the `captureImage()` function will capture the image on a specific video frame and send it for further processing. The full source code for the image capture user interface is in the `WebcamContainer.jsx` file.
 
 ### Color Palettes
 
