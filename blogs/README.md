@@ -106,6 +106,8 @@ Another crucial factor is to select models that are accessible for the project. 
 
 ![limit LLMs](images/limit-models.png)
 
+The AI models response is non-deterministic, means sometime the reponse is not like exactly what we want. By default this project uses the `gpt-4o-mini` model, in case the response is not quite right, you can change it to the more powerfull model, such as the `gpt-4o` model.  
+
 ## Capturing Images with Node.js
 
 To capture images, we can use [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API). It is an API related to WebRTC which provides support for streaming audio and video data. Before capturing an image from the web camera, first we need to initialize the web camera:
@@ -243,7 +245,7 @@ export async function saveData({ image, genColors }) {
 
 ![app screenshot](images/app-screenshot.png)
 
-The user interfaces consist of two main interfaces: **image capture** and **color palettes**.
+The UI consist of two main user interfaces: **image capture** and **color palettes**. In this project, we use React.js for better components management.
 
 ### Image Capture
 

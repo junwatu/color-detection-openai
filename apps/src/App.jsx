@@ -1,4 +1,4 @@
-import Chatbox from './Chatbox'
+import CustomBox from './CustomBox'
 import WebcamContainer from './WebcamContainer'
 import { useEffect, useState } from 'react'
 
@@ -26,7 +26,7 @@ const App = () => {
 	return (
 		<div id="content-container">
 			<WebcamContainer onColorsExtracted={handleColorsExtracted}/>
-			<Chatbox colors={colors}/>	
+			<CustomBox colors={colors}/>	
 		</div>
 	)
 }

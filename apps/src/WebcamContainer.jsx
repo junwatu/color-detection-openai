@@ -90,7 +90,7 @@ const WebcamContainer = ({ onColorsExtracted }) => {
 	}
 
 	const appendToChatbox = (message, isUserMessage = false) => {
-		const chatbox = document.getElementById('chatbox')
+		const chatbox = document.getElementById('custombox')
 		const messageElement = document.createElement('div')
 		const timestamp = new Date().toLocaleTimeString()
 
