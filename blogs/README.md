@@ -241,6 +241,29 @@ export async function saveData({ image, genColors }) {
 }
 ```
 
+This function will be called on the server route `/process-image` also.
+
+```js
+
+app.post('/process-image', async (req, res) => {
+    const { image } = req.body
+
+    if (!image) {
+        return res.status(400).json({ error: 'No image provided' })
+    }
+
+    // eslint-disable-next-line no-undef
+    const result = await getColorAnalysis(image)
+    const colorsArray = result.choices[0].message.content
+
+    // save data to the database
+    const saveStatus = await saveData(image, colorsArray)
+    console.log(saveStatus)
+
+    res.json(result.choices[0])
+})
+```
+
 ## Building User Interfaces
 
 ![app screenshot](images/app-screenshot.png)
