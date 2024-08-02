@@ -73,6 +73,7 @@ const WebcamContainer = ({ onColorsExtracted }) => {
             appendToChatbox(`Error: ${data.error}`, true)
             return
         }
+
         appendToChatbox(colorsData)
 
         if (
@@ -93,7 +94,7 @@ const WebcamContainer = ({ onColorsExtracted }) => {
     const handleError = (error) => {
         toggleLoader(false)
         console.error('Fetch error:', error)
-        appendToChatbox(`Error: ${error.message}`, true)
+        //appendToChatbox(`Error: ${error.message}`, true)
     }
 
     const toggleLoader = (show) => {

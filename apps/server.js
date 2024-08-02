@@ -3,12 +3,13 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { __dirname } from './dirname.js'
 import { getColorAnalysis } from './libs/ai.js'
+//import { saveData } from './griddbservices.js'
 
 const app = express()
 
 // eslint-disable-next-line no-undef
 if (!process.env.VITE_APP_URL) {
-	throw new Error('VITE_APP_URL environment variable is not set')
+    throw new Error('VITE_APP_URL environment variable is not set')
 }
 
 // eslint-disable-next-line no-undef
@@ -21,14 +22,21 @@ app.use(express.static(path.join(__dirname, 'dist')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.post('/process-image', async (req, res) => {
-	const { image } = req.body
+    const { image } = req.body
 
-	if (!image) {
-		return res.status(400).json({ error: 'No image provided' })
-	}
-	// eslint-disable-next-line no-undef
-	const result = await getColorAnalysis(image)
-	res.json(result.choices[0])
+    if (!image) {
+        return res.status(400).json({ error: 'No image provided' })
+    }
+
+    // eslint-disable-next-line no-undef
+    const result = await getColorAnalysis(image)
+    const colorsArray = result.choices[0].message.content
+
+    // save data to the database
+    //const saveStatus = await saveData(image, colorsArray)
+    //console.log(saveStatus)
+
+    res.json(result.choices[0])
 })
 
 app.listen(PORT, HOSTNAME, () => {
