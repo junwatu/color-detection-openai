@@ -8,7 +8,7 @@
  2. [Prerequisites](#prerequisites)
  3. [Running The Project](#running-the-project)
  4. [Setting Up the Environment](#setting-up-the-environment)
- 5. [Capturing Images with Node.js](#capturing-images-with-nodejs)
+ 5. [Capturing Images with MediaStream API](#capturing-images-with-mediastream)
  6. [Processing Images with OpenAI](#processing-images-with-openai)
  7. [Storing Data in GridDB](#storing-data-in-griddb)
  8. [Building User Interfaces](#building-user-interfaces)
@@ -108,7 +108,7 @@ Another crucial factor is to select models that are accessible for the project. 
 
 The AI models response is non-deterministic, means sometime the reponse is not like exactly what we want. By default this project uses the `gpt-4o-mini` model, in case the response is not quite right, you can change it to the more powerfull model, such as the `gpt-4o` model.  
 
-## Capturing Images with Node.js
+## Capturing Images with MediaStream
 
 To capture images, we can use [MediaStream API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Capture_and_Streams_API). It is an API related to WebRTC which provides support for streaming audio and video data. Before capturing an image from the web camera, first we need to initialize the web camera:
 
@@ -247,6 +247,12 @@ export async function saveData({ image, genColors }) {
 
 The UI consists of two main user interfaces: **image capture** and **color palettes**. In this project, we use React.js for better component management.
 
+### Image Capture
+
+The image capture user interface is simply a HTML5 video view. The full source code for the image capture user interface is in the `WebcamContainer.jsx` file.
+
+This is the snippet code that show the main HTML tags used:
+
 ```jsx
 // WebcamContainer.js
 const WebcamContainer = ({ onColorsExtracted }) => {
@@ -272,9 +278,7 @@ const WebcamContainer = ({ onColorsExtracted }) => {
 export default WebcamContainer
 ```
 
-The full source code is in the `WebcamContainer.jsx` file.
-
-### Image Capture
+When you click the **Capture** button the `captureImage()` function will capture the image on specific video frame and send it for further processing.
 
 ### Color Palettes
 
