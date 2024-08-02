@@ -330,6 +330,14 @@ const ColorRectangles = ({ colors }) => {
 export default ColorRectangles
 ```
 
+For example, if the colors array data is:
+
+```js
+['#4B8B3B', '#C4B600', '#7D7D7D', '#E3D4A0', '#2E2E2E', '#F6F1D3', '#A6A6A6']
+```
+
+Then the colors will be rendered in the web as below
+
 ![color patette ui](images/color-palette-ui.png)
 
 ## Further Enhancements
