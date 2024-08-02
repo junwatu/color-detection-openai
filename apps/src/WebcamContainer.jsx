@@ -7,7 +7,7 @@ const parseColors = (colors) => {
 	}
 	
 	if (typeof colors === 'string') {
-		return colors.split(',').map(color => color.trim())
+		return colors.split(/[\s,]+/).map(color => color.trim())
 	}
 	
 	return []

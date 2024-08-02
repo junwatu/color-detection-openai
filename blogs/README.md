@@ -239,6 +239,14 @@ export async function saveData({ image, genColors }) {
 }
 ```
 
-## Building Color Palettes UI
+## Building User Interfaces
+
+![app screenshot](images/app-screenshot.png)
+
+The user interfaces consist of two main interfaces: **image capture** and **color palettes**.
+
+### Image Capture
+
+### Color Palettes
 
 ## Further Enhancements
