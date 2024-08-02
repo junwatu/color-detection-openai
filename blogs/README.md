@@ -11,7 +11,7 @@
  5. [Capturing Images with Node.js](#capturing-images-with-nodejs)
  6. [Processing Images with OpenAI](#processing-images-with-openai)
  7. [Storing Data in GridDB](#storing-data-in-griddb)
- 8. [Integrating the Workflow](#building-color-palettes-ui)
+ 8. [Building User Interfaces](#building-user-interfaces)
  9. [Further Enhancements](#further-enhancements)
 
 ## Introduction
@@ -227,7 +227,7 @@ We utilize the GridDB database for data storage. Here are the main data fields a
 | picture     | STRING         | URL or path to picture files.                         |
 | colors      | STRING         | List of colors in Hex format.                         |
 
-The `saveData()` is a wrapper for the `insert()` function in the `libs\griddb.cjs` that responsible to save the data into the database.
+The `saveData()` is a wrapper for the `insert()` function in the `libs\griddb.cjs` that is responsible for saving the data into the database.
 
 ```js
 export async function saveData({ image, genColors }) {
@@ -245,7 +245,34 @@ export async function saveData({ image, genColors }) {
 
 ![app screenshot](images/app-screenshot.png)
 
-The UI consist of two main user interfaces: **image capture** and **color palettes**. In this project, we use React.js for better components management.
+The UI consists of two main user interfaces: **image capture** and **color palettes**. In this project, we use React.js for better component management.
+
+```jsx
+// WebcamContainer.js
+const WebcamContainer = ({ onColorsExtracted }) => {
+
+  const captureImage = () => {
+		    const context = canvasRef.current.getContext('2d')
+		    context.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height)
+
+		    const base64Image = canvasRef.current.toDataURL('image/jpeg')
+		    processImage(base64Image)
+	   }
+    // code processing here
+
+    return (
+        <div id="webcam-container">
+            <video id="webcam" ref={videoRef} autoPlay playsInline width="640" height="480"></video>
+            <canvas id="canvas" ref={canvasRef} width="640" height="480" style={{ display: 'none' }}></canvas>
+            <button id="capture" onClick={captureImage}>Capture</button>
+            <button id="switch-camera" onClick={switchCamera}>Switch Camera</button>
+        </div>
+    )
+}
+export default WebcamContainer
+```
+
+The full source code is in the `WebcamContainer.jsx` file.
 
 ### Image Capture
 
