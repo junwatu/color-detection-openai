@@ -227,7 +227,7 @@ We utilize the GridDB database for data storage. Here are the main data fields a
 | picture     | STRING         | URL or path to picture files.                         |
 | colors      | STRING         | List of colors in Hex format.                         |
 
-The `saveData()` is a wrapper for the `insert()` function in the `libs\griddb.cjs` that is responsible for saving the data into the database.
+The `saveData()` function is a wrapper for the `insert()` function in the `libs\griddb.cjs` file. It is responsible for saving data into the database. Only two main fields are saved in the database.
 
 ```js
 export async function saveData({ image, genColors }) {
@@ -241,10 +241,9 @@ export async function saveData({ image, genColors }) {
 }
 ```
 
-This function will be called on the server route `/process-image` also.
+The save data function will be executed on the server route `/process-image` after the color analysis of the image. This means that every time a user captures an image, it will be automatically sent to the server and the resulting data will be saved to the database.
 
 ```js
-
 app.post('/process-image', async (req, res) => {
     const { image } = req.body
 
@@ -268,7 +267,7 @@ app.post('/process-image', async (req, res) => {
 
 ![app screenshot](images/app-screenshot.png)
 
-The UI consists of two primary user interfaces: **image capture** and **color palettes**. React.js is utilized in this project for improved component management.
+The UI comprises two primary user interfaces: **image capture** and **color palettes**. React.js is utilized in this project for improved component management.
 
 ### Image Capture
 
