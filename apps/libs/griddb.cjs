@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-undef
 const griddb = require('griddb-node-api')
-const containerName = 'ColorPalettesCollection'
+const containerName = 'ColorPalettes'
 
 const initStore = async () => {
     const factory = griddb.StoreFactory.getInstance()
@@ -27,7 +27,7 @@ function initContainer() {
         name: containerName,
         columnInfoList: [
             ['id', griddb.Type.INTEGER],
-            ['picture', griddb.Type.STRING],
+            ['picture', griddb.Type.BLOB],
             ['colors', griddb.Type.STRING],
         ],
         type: griddb.ContainerType.COLLECTION,
@@ -153,12 +153,8 @@ async function queryAll(conInfo, store) {
 
             const rowData = {
                 id: `${row[0]}`,
-                title: `${row[1]}`,
-                subtitle: `${row[2]}`,
-                dataVisTitle: `${row[3]}`,
-                chartImage: `${row[4]}`,
-                bulletPoints: `${row[5]}`,
-                pptx: `${row[6]}`,
+                picture: `${row[1]}`,
+                colors: `${row[2]}`,
             }
             results.push(rowData)
         }
@@ -182,11 +178,12 @@ async function queryByID(id, conInfo, store) {
 }
 
 // Run any query
-
 async function anyQuery(id, conInfo, store) {
     try {
         const cont = await store.putContainer(conInfo)
-        const deleteByRowId = await cont.query('DELETE')
+        const deleteByRowId = await cont.query(
+            `DELETE FROM ${containerName} WHERE id=${id}`
+        )
         return deleteByRowId
     } catch (error) {
         throw new Error(error)

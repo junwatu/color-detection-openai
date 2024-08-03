@@ -5,7 +5,7 @@ const { collectionDb, store, conInfo } = await GridDB.initGridDbTS()
 
 export async function saveData({ image, genColors }) {
     const id = generateRandomID()
-    const picture = String(image)
+    const picture = Buffer(image)
     const colors = String(genColors)
 
     const packetInfo = [parseInt(id), picture, colors]
@@ -14,9 +14,7 @@ export async function saveData({ image, genColors }) {
 }
 
 export async function deleteDatabyID(id) {
-    return await GridDB.anyQuery(
-        `DELETE FROM ColorPalettesCollection WHERE id=${id}`
-    )
+    return await GridDB.anyQuery(id, conInfo, store)
 }
 
 export async function getDatabyID(id) {

@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import { __dirname } from './dirname.js'
 import { getColorAnalysis } from './libs/ai.js'
 import { saveData, getAllData, deleteDatabyID } from './griddbservices.js'
+import { log } from 'console'
 
 const app = express()
 
@@ -33,9 +34,7 @@ app.post('/process-image', async (req, res) => {
     const colorsArray = result.choices[0].message.content
 
     // save data to the database
-    const saveStatus = await saveData(image, colorsArray)
-    console.log(saveStatus)
-
+    const saveStatus = await saveData({ image, genColors: `${colorsArray}` })
     res.json(result.choices[0])
 })
 
