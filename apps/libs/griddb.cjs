@@ -178,7 +178,7 @@ async function queryByID(id, conInfo, store) {
 }
 
 // Run any query
-async function anyQuery(id, conInfo, store) {
+async function deleteQuery(id, conInfo, store) {
     try {
         const cont = await store.putContainer(conInfo)
         const deleteByRowId = await cont.query(
@@ -223,5 +223,5 @@ module.exports = {
     containersInfo,
     containerName,
     queryByID,
-    anyQuery,
+    deleteQuery,
 }

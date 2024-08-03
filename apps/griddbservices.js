@@ -14,7 +14,7 @@ export async function saveData({ image, genColors }) {
 }
 
 export async function deleteDatabyID(id) {
-    return await GridDB.anyQuery(id, conInfo, store)
+    return await GridDB.deleteQuery(id, conInfo, store)
 }
 
 export async function getDatabyID(id) {
