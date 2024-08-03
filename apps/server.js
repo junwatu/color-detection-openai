@@ -3,7 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { __dirname } from './dirname.js'
 import { getColorAnalysis } from './libs/ai.js'
-//import { saveData } from './griddbservices.js'
+import { saveData, getAllData, deleteDatabyID } from './griddbservices.js'
 
 const app = express()
 
@@ -33,12 +33,30 @@ app.post('/process-image', async (req, res) => {
     const colorsArray = result.choices[0].message.content
 
     // save data to the database
-    //const saveStatus = await saveData(image, colorsArray)
-    //console.log(saveStatus)
+    const saveStatus = await saveData(image, colorsArray)
+    console.log(saveStatus)
 
     res.json(result.choices[0])
 })
 
+app.get('/colors', async (req, res) => {
+    try {
+        const data = await getAllData()
+        res.json({ message: 'Data retrieved successfully', data })
+    } catch (error) {
+        console.error('Error retrieving all data:', error)
+        res.status(500).json({
+            message: 'Failed to retrieve data',
+            error: error.message,
+        })
+    }
+})
+
+app.get('/delete/:id', async (req, res) => {
+    const response = await deleteDatabyID(req.params.id)
+    res.json({ delete: response })
+})
+
 app.listen(PORT, HOSTNAME, () => {
-	console.log(`Server is running on http://localhost:${PORT}`)
+    console.log(`Server is running on http://${HOSTNAME}:${PORT}`)
 })
