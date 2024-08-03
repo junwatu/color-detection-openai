@@ -12,7 +12,7 @@
  6. [Processing Images with OpenAI](#processing-images-with-openai)
  7. [Storing Data in GridDB](#storing-data-in-griddb)
  8. [Building User Interfaces](#building-user-interfaces)
- 9. [Further Enhancements](#further-enhancements)
+ 9. [Server Routes](#server-routes)
 
 ## Introduction
 
@@ -340,4 +340,12 @@ Then the colors will be rendered in the web as below
 
 ![color patette ui](images/color-palette-ui.png)
 
-## Further Enhancements
+## Server Routes
+
+The are three server routes to handle the client request:
+
+| Route          | Method | Description                        |
+|----------------|--------|------------------------------------|
+| `/process-image` | POST   | Process an image for color analysis|
+| `/colors`        | GET    | Retrieve all stored color data     |
+| `/delete/:id`    | GET    | Delete a specific data entry by ID |

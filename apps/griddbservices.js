@@ -13,6 +13,12 @@ export async function saveData({ image, genColors }) {
     return saveStatus
 }
 
+export async function deleteDatabyID(id) {
+    return await GridDB.anyQuery(
+        `DELETE FROM ColorPalettesCollection WHERE id=${id}`
+    )
+}
+
 export async function getDatabyID(id) {
     return await GridDB.queryByID(id, conInfo, store)
 }
