@@ -179,12 +179,11 @@ async function queryByID(id, conInfo, store) {
 
 // Run any query
 async function deleteQuery(id, conInfo, store) {
+    console.log(id)
     try {
         const cont = await store.putContainer(conInfo)
-        const deleteByRowId = await cont.query(
-            `DELETE FROM ${containerName} WHERE id=${id}`
-        )
-        return deleteByRowId
+        const deleteResult = await cont.remove(id)
+        return { status: true, message: deleteResult }
     } catch (error) {
         throw new Error(error)
     }
