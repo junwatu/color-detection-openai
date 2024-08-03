@@ -224,7 +224,7 @@ We utilize the GridDB database for data storage. Here are the main data fields a
 | Column Name | Type           | Description                                           |
 |-------------|----------------|--------------------------------------------------------|
 | id          | INTEGER        | Unique identifier for each row.                       |
-| picture     | STRING         | URL or path to picture files.                         |
+| picture     | BLOB        | Base64 image encoding.                         |
 | colors      | STRING         | List of colors in Hex format.                         |
 
 The `saveData()` function is a wrapper for the `insert()` function in the `libs\griddb.cjs` file. It is responsible for saving data into the database. Only two main fields are saved in the database.
@@ -232,7 +232,7 @@ The `saveData()` function is a wrapper for the `insert()` function in the `libs\
 ```js
 export async function saveData({ image, genColors }) {
     const id = generateRandomID()
-    const picture = String(image)
+    const picture = Buffer(image)
     const colors = String(genColors)
 
     const packetInfo = [parseInt(id), picture, colors]
