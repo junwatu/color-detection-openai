@@ -3,7 +3,12 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { __dirname } from './dirname.js'
 import { getColorAnalysis } from './libs/ai.js'
-import { saveData, getAllData, deleteDatabyID } from './griddbservices.js'
+import {
+    saveData,
+    getAllData,
+    deleteDatabyID,
+    getDatabyID,
+} from './griddbservices.js'
 
 const app = express()
 
@@ -34,6 +39,7 @@ app.post('/process-image', async (req, res) => {
 
     // save data to the database
     const saveStatus = await saveData({ image, genColors: `${colorsArray}` })
+    console.log(saveStatus)
     res.json(result.choices[0])
 })
 
@@ -43,6 +49,20 @@ app.get('/colors', async (req, res) => {
         res.json({ message: 'Data retrieved successfully', data })
     } catch (error) {
         console.error('Error retrieving all data:', error)
+        res.status(500).json({
+            message: 'Failed to retrieve data',
+            error: error.message,
+        })
+    }
+})
+
+app.get('/colors/:id', async (req, res) => {
+    const dataId = req.params.id
+    try {
+        const data = await getDatabyID(dataId)
+        res.json(data)
+    } catch (error) {
+        console.error(`Error retrieving data with id:`, error)
         res.status(500).json({
             message: 'Failed to retrieve data',
             error: error.message,
