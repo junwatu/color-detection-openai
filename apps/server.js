@@ -4,7 +4,6 @@ import bodyParser from 'body-parser'
 import { __dirname } from './dirname.js'
 import { getColorAnalysis } from './libs/ai.js'
 import { saveData, getAllData, deleteDatabyID } from './griddbservices.js'
-import { log } from 'console'
 
 const app = express()
 
