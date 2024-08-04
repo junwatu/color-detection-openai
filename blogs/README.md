@@ -336,16 +336,36 @@ For example, if the colors array data is:
 ['#4B8B3B', '#C4B600', '#7D7D7D', '#E3D4A0', '#2E2E2E', '#F6F1D3', '#A6A6A6']
 ```
 
-Then the colors will be rendered in the web as below
+Then the colors will be rendered in the web as the screenshot below:
 
 ![color patette ui](images/color-palette-ui.png)
 
 ## Server Routes
 
-The are three server routes to handle the client request:
+The are four server routes to handle the client request.
 
-| Route          | Method | Description                        |
-|----------------|--------|------------------------------------|
-| `/process-image` | POST   | Process an image for color analysis|
-| `/colors`        | GET    | Retrieve all stored color data     |
-| `/delete/:id`    | GET    | Delete a specific data entry by ID |
+### POST `/process-image`
+
+Process an image for color analysis.
+
+### GET `/colors`
+
+The `/colors` route will retrieve all data from the database.
+
+![all colors data](images/colors-data.jpeg)
+
+### GET `/colors/:id`
+
+Retrieve stored color data based on the Id.
+
+![get color](images/color-id.jpeg)
+
+### GET `/delete/:id`
+
+Delete a specific data in the database by it's Id. For example, to delete data with id `8900`:
+
+```js
+http://localhost:3000/delete/8900
+```
+
+We can use tool like Postman to test the APIs.  
