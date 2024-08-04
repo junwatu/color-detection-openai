@@ -13,6 +13,7 @@
  7. [Storing Data in GridDB](#storing-data-in-griddb)
  8. [Building User Interfaces](#building-user-interfaces)
  9. [Server Routes](#server-routes)
+ 10. [Test SQL]()
 
 ## Introduction
 
@@ -371,3 +372,28 @@ http://localhost:3000/delete/8900
 ```
 
 Tools like Postman can be used to test APIs.  
+
+## SQL Data Test
+
+To check the data in the database, we can use CLI commands. In this project, we use Ubuntu 20.04 LTS.
+
+Login to the GridDB user:
+
+```shell
+sudo su gsadm
+```
+
+and then type this command to enter the GridDB shell:
+
+```shell
+gs_sh
+```
+
+In this shell, we can list all containers and run any SQL queries.
+
+```shell
+gs[public]> showcontainer
+gs[public]> select * from ColorPalettes;
+1 results (38ms)
+gs[public]> delete from ColorPalettes where id=6609;
+```
