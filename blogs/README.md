@@ -25,7 +25,7 @@ Before we dive in, ensure the following software is installed on your machine:
 - Node.js
 - GridDB
 - OpenAI API access
-- A webcam
+- Browser with a webcam access
 
 ## Running The Project
 
