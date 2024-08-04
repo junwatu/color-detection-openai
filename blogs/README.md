@@ -363,6 +363,24 @@ Retrieve stored color data based on the ID.
 
 ![get color](images/color-id.jpeg)
 
+The data response for the `picture` field is a `Buffer` type so to process it in the browser, we need to change it into a readable format first.
+
+```js
+/**
+ * Extracting the buffer data
+ * Assume the result data name is jsonData 
+ */
+const bufferData = jsonData[0][1].data;
+
+// Converting buffer data to Uint8Array object
+const uint8Array = new Uint8Array(bufferData);
+
+// Converting Uint8Array to UTF-8 string
+const utf8String = new TextDecoder('utf-8').decode(uint8Array);
+
+console.log(utf8String);
+```
+
 ### GET `/delete/:id`
 
 Delete specific data in the database by its ID. For example, to delete data with id `8900`:
