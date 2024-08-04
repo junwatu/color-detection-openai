@@ -56,6 +56,8 @@ You can change the `VITE_APP_URL` to your needs and then run the project by runn
 npm run start:build
 ```
 
+Go to the browser and enter the URL set on `VITE_APP_URL`, which in this case is `http://localhost:3000`. Make sure to enable the webcam in your browser, then click the **Capture** button to take a photo using the web camera.
+
 ## Setting Up the Environment
 
 ### 1. Installing Node.js
