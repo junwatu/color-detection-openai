@@ -20,7 +20,7 @@ In this tutorial, we will explore how to extract color palettes from images capt
 
 ## Prerequisites
 
-Before we dive in, ensure you have the following installed on your machine:
+Before we dive in, ensure the following software installed on your machine:
 
 - Node.js
 - GridDB
@@ -35,7 +35,7 @@ Clone the source code from this [GitHub repository](https://github.com/junwatu/c
 git clone https://github.com/junwatu/color-detection-openai.git
 ```
 
-You also need to install [Node.js](#1-installing-nodejs) and [GridDB](#2-setting-up-griddb) for this project to run. If the software requirements are installed, change the directory to the `apps` project directory and then install all the dependencies:
+This project also need to install [Node.js](#1-installing-nodejs) and [GridDB](#2-setting-up-griddb) for this project to run. If the software requirements are installed, change the directory to the `apps` project directory and then install all the dependencies:
 
 ```shell
 cd color-detection-openai
@@ -43,7 +43,7 @@ cd apps
 npm install
 ```
 
-Create a `.env` file and copy all environment variables from the `.env.example` file. You need an OpenAI key for this project, please look in [this section](#3-get-the-openai-key) on how to get the key.
+Create a `.env` file and copy all environment variables from the `.env.example` file. We need an OpenAI key for this project, please look in [this section](#3-get-the-openai-key) on how to get the key.
 
 ```ini
 OPENAI_API_KEY=sk-proj-secret
@@ -76,7 +76,7 @@ node -v # should print `v16.20.2`
 npm -v # should print `8.19.4``
 ```
 
-To connect Node.js and GridDB database, you need the [gridb-node-api](https://github.com/nodejs/node-addon-api) npm package which is a Node.js binding developed using GridDB C Client and Node addon API.
+To connect Node.js and GridDB database, we need the [gridb-node-api](https://github.com/nodejs/node-addon-api) npm package which is a Node.js binding developed using GridDB C Client and Node addon API.
 
 ### 2. Setting Up GridDB
 
@@ -362,10 +362,10 @@ Retrieve stored color data based on the Id.
 
 ### GET `/delete/:id`
 
-Delete a specific data in the database by it's Id. For example, to delete data with id `8900`:
+Delete specific data in the database by its Id. For example, to delete data with id `8900`:
 
 ```js
 http://localhost:3000/delete/8900
 ```
 
-We can use tool like Postman to test the APIs.  
+Tools like Postman can be used to test APIs.  
