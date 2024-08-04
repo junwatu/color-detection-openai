@@ -20,7 +20,7 @@ In this tutorial, we will explore how to extract color palettes from images capt
 
 ## Prerequisites
 
-Before we dive in, ensure the following software installed on your machine:
+Before we dive in, ensure the following software is installed on your machine:
 
 - Node.js
 - GridDB
@@ -35,7 +35,7 @@ Clone the source code from this [GitHub repository](https://github.com/junwatu/c
 git clone https://github.com/junwatu/color-detection-openai.git
 ```
 
-This project also need to install [Node.js](#1-installing-nodejs) and [GridDB](#2-setting-up-griddb) for this project to run. If the software requirements are installed, change the directory to the `apps` project directory and then install all the dependencies:
+This project also needs to install [Node.js](#1-installing-nodejs) and [GridDB](#2-setting-up-griddb) for this project to run. If the software requirements are installed, change the directory to the `apps` project directory and then install all the dependencies:
 
 ```shell
 cd color-detection-openai
@@ -241,7 +241,7 @@ export async function saveData({ image, genColors }) {
 }
 ```
 
-The save data function will be executed on the server route `/process-image` after the color analysis of the image. This means that every time a user captures an image, it will be automatically sent to the server and the resulting data will be saved to the database.
+The save data function will be executed on the server route `/process-image` after the color analysis of the image. Every time a user captures an image, it will be automatically sent to the server and the resulting data will be saved to the database.
 
 ```js
 app.post('/process-image', async (req, res) => {
@@ -267,7 +267,7 @@ app.post('/process-image', async (req, res) => {
 
 ![app screenshot](images/app-screenshot.png)
 
-The UI comprises two primary user interfaces: **image capture** and **color palettes**. React.js is utilized in this project for improved component management.
+The UI comprises two primary user interfaces: **image capture** and **color palettes**. React.js is utilized in this project to improve component management.
 
 ### Image Capture
 
@@ -336,7 +336,7 @@ For example, if the colors array data is:
 ['#4B8B3B', '#C4B600', '#7D7D7D', '#E3D4A0', '#2E2E2E', '#F6F1D3', '#A6A6A6']
 ```
 
-Then the colors will be rendered in the web as the screenshot below:
+Then the colors will be rendered on the web as the screenshot below:
 
 ![color patette ui](images/color-palette-ui.png)
 
@@ -356,13 +356,13 @@ The `/colors` route will retrieve all data from the database.
 
 ### GET `/colors/:id`
 
-Retrieve stored color data based on the Id.
+Retrieve stored color data based on the ID.
 
 ![get color](images/color-id.jpeg)
 
 ### GET `/delete/:id`
 
-Delete specific data in the database by its Id. For example, to delete data with id `8900`:
+Delete specific data in the database by its ID. For example, to delete data with id `8900`:
 
 ```js
 http://localhost:3000/delete/8900
